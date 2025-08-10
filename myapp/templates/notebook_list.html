@@ -1,0 +1,61 @@
+{% load static %}
+<html>
+<head>
+    <title>Book List</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #81cdf1;
+        margin: 0;
+        padding: 20px;
+    }
+    h1 {
+        color: #333;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        background: #fff;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+    }
+    a {
+        text-decoration: none;
+        color: #007bff;
+    }
+    img.cover {
+        width: 60px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin-right: 15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+</style>
+</head>
+<body>
+<h1>All Notebooks</h1>
+<ul>
+    {% for book in notebooks %}
+    <li>
+        {% if book.cover_image %}
+            <img class="cover" src="{{ book.cover_image.url }}" alt="{{ book.brand }}">
+        {% else %}
+            <img class="cover" src="{% static 'images/default_cover.jpg' %}" alt="No cover available">
+        {% endif %}
+        <a href="{% url 'notebook_detail' book.pk %}">
+            {{ book.brand }} by {{ book.author }}<br>
+            cost={{book.price}}<br>
+        </a>
+    </li>
+    
+    {% endfor %}
+</ul>
+</body>
+</html>

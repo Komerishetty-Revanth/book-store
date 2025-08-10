@@ -1,0 +1,79 @@
+<!-- templates/accounts/login.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+         margin: 0;
+         padding: 0;
+         height: 100vh;
+         background-color: #000; /* black background for strong glow */
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         font-family: 'Courier New', monospace;
+         position: relative;
+        }
+
+        body::before {
+         content: '';
+         box-shadow: 0 0 20px rgba(0, 191, 255, 0.5); 
+         position: absolute;
+         width: 600px;
+         height: 400px;
+         background-color: rgba(13, 23, 216, 0.2); /* semi-dark book background */
+         border: 3px solid #00bfff; /* blue frame */
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         border-radius: 10px;
+         z-index: -1; /* behind the form */
+        }
+        form {
+            background: #222;
+            padding: 20px;
+            border: 2px solid rgb(153, 215, 248);
+            border-radius: 8px;
+        }
+        input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            background: #ebe7e7;
+            color: rgb(175, 236, 255);
+            border: 1px solid rgb(47, 52, 47);
+        }
+        button {
+            padding: 10px;
+            background: rgb(236, 243, 247);
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+        .message {
+            color: red;
+        }
+        h2 {
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Login</h2>
+        {% for message in messages %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
+
+

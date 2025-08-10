@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Notebook</title>
+    {% load widget_tweaks %}
+
+    {% load static %}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 210vh;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            color: #e5e4e2; /* platinum text */
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+        }
+
+        body::before {
+            content: '';
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+            position: absolute;
+            width: 750px;
+            height: 950px; /* Increased for new fields */
+            background-color: rgba(0, 0, 50, 0.2);
+            border: 3px solid #00bfff;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        h1 {
+            position: absolute;
+            top: 30px;
+            text-align: center;
+            color: #f5f5f5;
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+        }
+
+        form {
+            background: #111;
+            padding: 25px;
+            border: 2px solid rgb(153, 215, 248);
+            border-radius: 10px;
+            width: 350px;
+            color: #e5e4e2;
+            text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #f0f0f0;
+            text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            background: #000;
+            color: #ffffff;
+            border: 1px solid #0f0;
+            border-radius: 4px;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            background: rgb(164, 217, 248);
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #00d9ff;
+        }
+
+        /* Small text hints */
+        .hint {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }
+
+        /* Image preview */
+        #imagePreview {
+            margin-top: 10px;
+            max-width: 100%;
+            max-height: 150px;
+            display: none;
+            border: 1px solid #00bfff;
+            border-radius: 4px;
+        }
+
+        
+        #storyCounter {
+            font-size: 12px;
+            text-align: right;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add a New Notebook</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>Brand:</label> {{ form.brand|add_class:"required" }}<br><br>
+        <label>Pages:</label> {{ form.pages }}<br><br>
+        <label>Size:</label> {{ form.size }}<br><br>
+        <label>Type:</label> {{ form.type }}<br><br>
+        <label>Price:</label> {{ form.price }} 
+        <div class="hint">Example: 199.99</div><br><br>
+
+        <label>Description:</label><br> {{ form.description }}<br><br>
+
+        <label>Story / Notes:</label><br> {{ form.story }} 
+        <div id="storyCounter">0 / 500</div><br><br>
+
+        <label>Cover Image:</label>
+        <input type="file" name="cover_image" accept="image/*" onchange="previewImage(event)">
+        <img id="imagePreview" alt="Image Preview"><br><br>
+
+        <button type="submit">Save Notebook</button>
+    </form>
+
+    <script>
+        const storyField = document.querySelector('[name="story"]');
+        const counter = document.getElementById('storyCounter');
+        if (storyField) {
+            storyField.addEventListener('input', () => {
+                const len = storyField.value.length;
+                counter.textContent = len + " / 500";
+            });
+        }
+
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
+</html>

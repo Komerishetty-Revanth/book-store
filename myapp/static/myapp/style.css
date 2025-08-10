@@ -1,0 +1,112 @@
+/* General Layout */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', monospace;
+    position: relative;
+}
+
+/* Glowing Background Box */
+body::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 500px;
+    background-color: rgba(0, 0, 50, 0.2);
+    border: 3px solid #00bfff;
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    z-index: -1;
+}
+
+/* Form Container */
+form {
+    background: #111;
+    padding: 25px;
+    border: 2px solid rgb(153, 215, 248);
+    border-radius: 10px;
+    width: 350px;
+}
+
+/* Inputs, Selects, Textareas */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="file"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    background: #000;
+    border: 1px solid #0f0;
+    border-radius: 4px;
+}
+
+/* Textareas specifically */
+textarea {
+    resize: vertical;
+    height: 80px;
+}
+
+/* Buttons */
+button {
+    padding: 10px;
+    background: rgb(164, 217, 248);
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #00d9ff;
+}
+
+/* Lists for Navigation */
+ul {
+    list-style-type: none;
+    padding: 20px;
+    margin-top: 20px;
+    background: rgba(0, 0, 50, 0.2);
+    border: 2px solid #00bfff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+    width: 300px;
+    text-align: center;
+}
+
+li {
+    margin: 15px 0;
+    transition: transform 0.3s ease;
+}
+
+li:hover {
+    transform: scale(1.05);
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    border: 1px solid #00d9ff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+a:hover {
+    background-color: #00d9ff;
+    color: #000;
+}

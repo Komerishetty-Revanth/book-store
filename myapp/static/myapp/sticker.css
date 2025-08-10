@@ -1,0 +1,64 @@
+/* Base page background */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #111;
+  overflow: hidden;
+  position: relative;
+}
+
+/* General book sticker style */
+.book-sticker {
+  width: 60px;
+  height: 60px;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/29/29302.png'); /* You can change this */
+  background-size: cover;
+  position: absolute;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 5px #00f6ff);
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Placement classes */
+.top-left {
+  top: 30px;
+  left: 40px;
+}
+
+.top-right {
+  top: 30px;
+  right: 40px;
+}
+
+.bottom-left {
+  bottom: 30px;
+  left: 40px;
+}
+
+.bottom-right {
+  bottom: 30px;
+  right: 40px;
+}
+
+.middle-left {
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+.middle-right {
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+}

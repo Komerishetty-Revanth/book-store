@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>your App</title>
+    {% load static %}
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #62c2f5;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to book store</h1>
+    <p>Discover, share, and explore notebooks — from creative stories to detailed specs, all in one place.</p> 
+    <p>these are the links to visit</p>
+    <ul>     
+        <li><a href="{% url 'add_notebook' %}">Add Notebook</a></li>
+        <li><a href="{% url 'notebook_list' %}">Notebook List</a></li>
+    </ul>
+
+</body>
+</html>
+
+  

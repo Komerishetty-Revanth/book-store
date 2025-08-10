@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+    <style>
+        body {
+         margin: 0;
+         padding: 0;
+         height: 100vh;
+         background-color: #000; /* black background for strong glow */
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         font-family: 'Courier New', monospace;
+         position: relative;
+         text-align: center;
+        }
+
+        body::before {
+         content: '';
+         box-shadow: 0 0 20px rgba(0, 191, 255, 0.5); 
+         position: absolute;
+         width: 600px;
+         height: 400px;
+         background-color: rgba(13, 23, 216, 0.2); /* semi-dark book background */
+         border: 3px solid #00bfff; /* blue frame */
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         border-radius: 10px;
+         z-index: -1; /* behind the content */
+        }
+
+        h1, p {
+            color: #f0f8ff; /* bright text for better visibility */
+            margin: 10px 0;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background: rgb(236, 243, 247);
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .button:hover {
+            background: #00bfff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Book Store</h1>
+    <p>Your one-stop shop for all your book needs!</p>
+    <p>Please log in or sign up to continue.</p>
+    <div class="button-container">
+        <a href="{% url 'login' %}" class="button">Login</a>
+        <a href="{% url 'signup' %}" class="button">Signup</a>
+    </div>
+</body>
+</html>
+
+
